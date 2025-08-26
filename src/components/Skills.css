@@ -1,0 +1,149 @@
+/* Skills.css - Modern Developer Skills Section */
+.skills-scroll-container {
+  width: 100%;
+  overflow: hidden;
+  margin: 2rem 0;
+  background: var(--secondary-dark);
+  padding: 2rem 0; 
+  border-radius: var(--border-radius);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.skills-scroll-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-dark) 0%, transparent 100%);
+  z-index: 2;
+}
+
+.skills-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, var(--secondary-dark) 100%);
+  z-index: 2;
+}
+
+.skills-scroll-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  white-space: nowrap;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1.5rem;
+  transition: transform 0.3s var(--transition-cubic);
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+}
+
+.skill-icon {
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+  margin-bottom: 0.75rem;
+  transition: var(--transition-main);
+}
+
+.skill-item:hover .skill-icon {
+  color: var(--white);
+}
+
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  text-align: center;
+  transition: var(--transition-main);
+}
+
+.skill-item:hover .skill-name {
+  color: var(--accent-primary);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skill-icon {
+    font-size: 2rem;
+  }
+  
+  .skill-name {
+    font-size: 0.75rem;
+  }
+  
+  .skills-scroll-container {
+    padding: 1.5rem 0;
+    margin: 1.5rem 0;
+  }
+  
+  .skills-scroll-container::before,
+  .skills-scroll-container::after {
+    width: 60px;
+  }
+  
+  .skill-item {
+    margin: 0 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-icon {
+    font-size: 1.75rem;
+  }
+  
+  .skill-name {
+    font-size: 0.7rem;
+  }
+  
+  .skills-scroll-container {
+    padding: 1.25rem 0;
+    margin: 1.25rem 0;
+  }
+  
+  .skills-scroll-container::before,
+  .skills-scroll-container::after {
+    width: 40px;
+  }
+  
+  .skill-item {
+    margin: 0 1rem;
+  }
+  
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+}
+
+@media (max-width: 375px) {
+  .skill-icon {
+    font-size: 1.5rem;
+  }
+  
+  .skill-name {
+    font-size: 0.65rem;
+  }
+  
+  .skill-item {
+    margin: 0 0.75rem;
+  }
+}
