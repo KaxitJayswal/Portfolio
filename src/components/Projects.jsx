@@ -8,7 +8,7 @@ const Projects = () => {
     {
       title: "Campus Connect",
       description: "CampusConnect is a full-stack MERN event hub where Students can discover and save college events, while Organizers manage their own listings through private, role-based dashboards.",
-      technologies: ["MongoDB", "Express", "React", "Node.js", "Redux"],
+      technologies: ["MongoDB", "Express", "React", "Node.js"],
       link: "https://campus-connect-online.vercel.app/",
       github: "https://github.com/KaxitJayswal/Campus_Connect-frontend",
       category: "fullstack"
@@ -18,7 +18,7 @@ const Projects = () => {
       description: "Modern, professional portfolio website showcasing skills, projects, and contact information with responsive design.",
       technologies: ["React", "CSS", "Vite"],
       link: "#",
-      github: "#",
+      github: "https://github.com/KaxitJayswal/Portfolio",
       category: "frontend"
     },
     {

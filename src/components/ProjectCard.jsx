@@ -9,7 +9,7 @@ const ProjectCard = ({ title, description, image, technologies, link, github }) 
         {image ? (
           <img src={image} alt={title} />
         ) : (
-          <div className="placeholder-image">Project Image</div>
+          <div className="placeholder-image">{title}</div>
         )}
       </div>
       <div className="project-content">

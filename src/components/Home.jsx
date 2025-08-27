@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaCode, FaLaptopCode, FaMobileAlt } from 'react-icons/fa';
+import resumePDF from '../assets/resume.pdf';
 
 const Home = () => {
   const scrollToAbout = () => {
@@ -12,15 +13,24 @@ const Home = () => {
 
   return (
     <section id="home">
+      <div className="home-background">
+        <div className="animated-bg"></div>
+      </div>
+      
       <div className="home-container">
         <p className="small-heading animated">Hi, my name is</p>
         <h1 className="main-heading animated animated-delay-1">Kaxit Jayswal.</h1>
         <h2 className="secondary-heading animated animated-delay-1">I build things for the web.</h2>
         <p className="hero-description animated animated-delay-2">
           I'm a full-stack developer specializing in building exceptional digital experiences. 
-          Currently, I'm focused on building accessible, human-centered products at Company Name.
+          Currently, I'm focused on building accessible, human-centered products.
         </p>
-        <div className="cta-container animated animated-delay-2">
+        
+        <div className="hero-tags animated animated-delay-2">
+          <span className="tag"><FaLaptopCode /> Web Developer</span>
+        </div>
+        
+        <div className="cta-container animated animated-delay-3">
           <a href="#projects" className="hero-cta-button">Check out my work</a>
           <a href="#contact" className="hero-cta-button secondary">Get in touch</a>
         </div>

@@ -25,23 +25,31 @@
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+  text-align: center;
+}
+
+/* New wrapper for Quick Links section */
+.footer-bottom-sections {
+  display: contents; /* This makes it essentially invisible in desktop layout, preserving the grid */
 }
 
 .footer-info {
   position: relative;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-info:hover,
-.footer-nav:hover,
-.footer-credits:hover {
+.footer-nav:hover {
   transform: translateY(-5px);
 }
 
 .footer-nav,
-.footer-credits {
+.footer-info {
   position: relative;
   transition: transform 0.3s ease;
 }
@@ -59,42 +67,21 @@
     margin-bottom: 1rem;
   }
   
-  .footer-info h3::after,
-  .footer-nav h3::after,
-  .footer-credits h3::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
   .footer-social {
     justify-content: center;
   }
   
-  .footer-nav {
-    margin-top: 1rem;
-  }
-  
-  .footer-nav-links {
-    align-items: center;
+  /* Make the bottom sections a grid for tablet */
+  .footer-bottom-sections {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    max-width: 400px;
-    margin: 0 auto;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding: 1rem 0 0;
   }
   
-  .footer-credits {
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .footer-credits p {
-    justify-content: center;
-  }
-  
-  /* Make sure footer-credits elements are properly centered */
-  .footer-credits .highlight {
-    display: inline-block;
+  .footer-nav {
+    margin-top: 0;
   }
   
   .footer {
@@ -116,53 +103,106 @@
   }
   
   .footer-content {
-    padding: 0 1.25rem;
-    gap: 2rem;
+    padding: 0 1.5rem;
+    gap: 2.5rem;
+    display: flex;
+    flex-direction: column;
   }
   
-  .footer-info h3,
-  .footer-nav h3,
-  .footer-credits h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
+  /* Keep all content centered in mobile view */
+  .footer-info {
+    text-align: center;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  }
+  
+  .footer-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-info h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
   }
   
   .footer-info p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  /* Display bottom sections in a column */
+  .footer-bottom-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Center all sections in mobile view */
+  .footer-nav {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-nav h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-nav h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+  }
+  
+  .footer-nav-links {
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .footer-nav-links a {
+    padding: 0.3rem 0;
     font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-nav-links a::before {
+    margin-right: 0.3rem;
+    font-size: 0.8rem;
+  }
+  
+  .footer-credits p {
+    justify-content: center;
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
   }
   
   .footer-social {
     gap: 0.75rem;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 1rem;
   }
   
   .footer-social a {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     font-size: 1rem;
   }
   
   .footer-bottom {
-    padding: 1.25rem 1rem;
+    margin-top: 3rem;
+    padding: 1.5rem 1rem;
     font-size: 0.8rem;
-  }
-  
-  .footer-nav-links {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-  
-  .footer-nav-links a {
-    padding: 0.5rem;
-    border-radius: 4px;
-    background: rgba(35, 53, 84, 0.2);
-    transition: all 0.3s ease;
-  }
-  
-  .footer-nav-links a:hover {
-    background: rgba(100, 255, 218, 0.1);
-    color: var(--accent-primary);
   }
 }
 
@@ -172,25 +212,37 @@
   }
   
   .footer-social a {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
   }
   
   .footer-info h3,
-  .footer-nav h3,
-  .footer-credits h3 {
+  .footer-nav h3 {
     font-size: 1rem;
   }
-}
-
-@media (max-width: 375px) {
+  
   .footer-content {
+    gap: 1.5rem;
+    padding: 0 1.2rem;
+  }
+  
+  /* Keep bottom sections in a column for smallest screens */
+  .footer-bottom-sections {
     gap: 1.5rem;
   }
   
-  .footer-social {
-    flex-wrap: wrap;
-    justify-content: center;
+  .footer-nav-links a {
+    font-size: 0.8rem;
+  }
+  
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding: 1.2rem 1rem 1rem;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.75rem;
   }
 }
 
@@ -207,7 +259,8 @@
   content: '';
   position: absolute;
   bottom: -5px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 40px;
   height: 2px;
   background-color: var(--accent-primary);
@@ -219,7 +272,8 @@
   font-size: 0.9rem;
   line-height: 1.7;
   max-width: 350px;
-
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-social {
@@ -287,7 +341,8 @@
   content: '';
   position: absolute;
   bottom: -5px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 40px;
   height: 2px;
   background-color: var(--accent-primary);
@@ -297,6 +352,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  align-items: center;
 }
 
 .footer-nav-links a {
@@ -323,100 +379,6 @@
 
 .footer-nav-links a:hover::before {
   transform: translateX(2px);
-}
-
-.footer-credits {
-  text-align: right;
-}
-
-.footer-credits h3 {
-  font-size: 1.2rem;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  font-family: var(--font-mono);
-  position: relative;
-  display: inline-block;
-  padding-left: 1.5rem;
-}
-
-.footer-credits h3::before {
-  content: "";
-  color: var(--accent-primary);
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 1.2rem;
-  line-height: 1;
-  /* vertically center for multi-line h3 if needed */
-  transform: translateY(0.1em);
-}
-
-.footer-credits h3::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background-color: var(--accent-primary);
-}
-
-.footer-credits p {
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
-/* Update to ensure mobile responsiveness with proper centering */
-@media (max-width: 768px) {
-  .footer-credits {
-    text-align: center;
-  }
-  
-  .footer-credits h3 {
-    text-align: center;
-  }
-  
-  .footer-credits h3::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .footer-credits p {
-    justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-  }
-}
-
-.footer-credits .highlight {
-  color: var(--accent-primary);
-  font-family: var(--font-mono);
-  position: relative;
-  display: inline-block;
-}
-
-.footer-credits .highlight::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--accent-primary);
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease-out;
-}
-
-.footer-credits .highlight:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
 }
 
 .footer-bottom {

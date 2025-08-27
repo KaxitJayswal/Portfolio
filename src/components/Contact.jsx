@@ -138,24 +138,12 @@ const Contact = () => {
             <div className="contact-detail-item">
               <FaMapMarkerAlt className="detail-icon" />
               <a href="https://maps.google.com/?q=Ahemdabad,Gujarat" target="_blank" rel="noopener noreferrer" className="contact-link">
-                <span className="detail-text">Ahemdabad,Gujarat</span>
+                <span className="detail-text"><span className="highlight">Ahemdabad, Gujarat</span></span>
               </a>
             </div>
           </div>
           
-          <p>Feel free to connect with me on social media:</p>
-          
-          <div className="social-links">
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="social-link">
-              <FaGithub />
-            </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="social-link">
-              <FaLinkedinIn />
-            </a>
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="social-link">
-              <FaTwitter />
-            </a>
-          </div>
+          <p>Feel free to connect with me on social media.</p>
         </div>
         
         <div className="contact-form">

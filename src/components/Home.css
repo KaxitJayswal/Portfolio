@@ -1,31 +1,81 @@
 /* Home.css - Modern developer portfolio hero section */
+#home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.home-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.animated-bg {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(100, 255, 218, 0.05) 0%, transparent 70%);
+  opacity: 0.7;
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .home-container {
-  /* height: calc(100vh - 6rem); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .small-heading {
   color: var(--accent-primary);
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 5px;
+}
+
+.small-heading::before {
+  content: '>';
+  position: absolute;
+  left: -15px;
+  color: var(--accent-primary);
+  opacity: 0.8;
 }
 
 .main-heading {
-  font-size: 4rem;
-  font-weight: 600;
+  font-size: 4.5rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1rem;
   line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .secondary-heading {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 600;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
@@ -33,17 +83,44 @@
 }
 
 .hero-description {
-  max-width: 500px;
-  font-size: 1.1rem;
+  max-width: 550px;
+  font-size: 1.15rem;
   line-height: 1.7;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* New tags section */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background-color: rgba(100, 255, 218, 0.1);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  transition: var(--transition-main);
+}
+
+.tag:hover {
+  background-color: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
 }
 
 .cta-container {
   display: flex;
   gap: 1.5rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .hero-cta-button {
@@ -57,6 +134,8 @@
   text-decoration: none;
   transition: var(--transition-main);
   position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .hero-cta-button:first-child {
@@ -71,14 +150,42 @@
   border: 1px solid var(--bg-light);
 }
 
+.hero-cta-button.resume {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--accent-secondary);
+}
+
+.hero-cta-button:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(100, 255, 218, 0.1);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
 .hero-cta-button:hover {
   transform: translateY(-3px);
   box-shadow: 4px 4px 0 var(--accent-primary);
 }
 
+.hero-cta-button:hover:after {
+  height: 100%;
+}
+
 .hero-cta-button.secondary:hover {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
+}
+
+.hero-cta-button.resume:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+  box-shadow: 4px 4px 0 var(--accent-secondary);
 }
 
 .scroll-down {
@@ -96,11 +203,13 @@
   animation: bounce 2s infinite;
   cursor: pointer;
   transition: var(--transition-main);
+  z-index: 2;
 }
 
 .scroll-down:hover {
   color: var(--accent-primary);
 }
+
 
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
@@ -117,42 +226,56 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .main-heading {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
   }
   
   .secondary-heading {
-    font-size: 2rem;
+    font-size: 2.4rem;
+    margin-bottom: 1.2rem;
   }
   
   .hero-description {
     font-size: 1rem;
+    max-width: 450px;
   }
   
   .cta-container {
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
-    align-items: flex-start;
   }
   
   .hero-cta-button {
-    padding: 0.85rem 1.5rem;
+    padding: 0.9rem 1.5rem;
     font-size: 0.85rem;
+  }
+  
+  .hero-tags {
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .tag {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
+  #home {
+    min-height: 90vh;
+  }
+  
   .home-container {
-    height: auto;
-    min-height: calc(100vh - 6rem);
-    padding: 2rem 0;
+    padding: 0 1.5rem;
+    margin-top: 2rem;
   }
   
   .main-heading {
-    font-size: 2rem;
+    font-size: 2.4rem;
   }
   
   .secondary-heading {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
   }
   
@@ -163,26 +286,63 @@
   
   .hero-description {
     font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .hero-tags {
+    justify-content: flex-start;
+    margin-bottom: 1.2rem;
+  }
+  
+  .cta-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
   }
   
   .hero-cta-button {
     width: 100%;
     text-align: center;
     justify-content: center;
+    font-size: 0.85rem;
+    padding: 0.85rem 1.2rem;
   }
   
   .scroll-down {
-    bottom: 1rem;
+    bottom: 1.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .scroll-down:after {
+    height: 30px;
+    bottom: -40px;
+  }
+  
+  .animated-bg {
+    opacity: 0.4;
   }
 }
 
 @media (max-width: 375px) {
   .main-heading {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   
   .secondary-heading {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+  
+  .tag {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .scroll-down {
+    bottom: 1rem;
   }
 }
