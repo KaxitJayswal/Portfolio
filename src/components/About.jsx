@@ -2,6 +2,7 @@ import React from 'react';
 import './About.css';
 import { FaGithub, FaLinkedin, FaTwitter, FaFileDownload } from 'react-icons/fa';
 import resumePDF from '../assets/resume.pdf';
+// import profileImage from '../assets/kaxit image.jpg';
 
 const About = () => {
   return (
@@ -14,7 +15,7 @@ const About = () => {
           <div className="profile-section animated">
             <div className="profile-picture">
               <div className="profile-placeholder">
-                <img src="https://via.placeholder.com/300x300" alt="Kaxit Jayswal" />
+                {/* <img src={profileImage} alt="Kaxit Jayswal" /> */}
               </div>
             </div>
             <div className="profile-details">

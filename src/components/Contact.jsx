@@ -27,6 +27,8 @@ const Contact = () => {
     message: ''
   });
   
+  const [isLoading, setIsLoading] = useState(false);
+  
   const [fieldErrors, setFieldErrors] = useState({
     name: '',
     email: '',
@@ -63,7 +65,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validate all fields
@@ -87,28 +89,68 @@ const Contact = () => {
       return;
     }
     
-    // For now, this is just a mock submission
-    // Later, you'll connect this to your backend
-    setFormStatus({
-      submitted: true,
-      error: false,
-      message: 'Thanks for your message! I\'ll get back to you soon.'
-    });
+    // Set loading state
+    setIsLoading(true);
     
-    // Reset form after submission
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+    // Web3Forms API endpoint
+    const apiKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: apiKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: 'Portfolio Contact Form',
+          to_name: 'Kaxit Jayswal'
+        })
       });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setFormStatus({
+          submitted: true,
+          error: false,
+          message: 'Thanks for your message! I\'ll get back to you soon.'
+        });
+        
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        
+        // Clear status message after 5 seconds
+        setTimeout(() => {
+          setFormStatus({
+            submitted: false,
+            error: false,
+            message: ''
+          });
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
       setFormStatus({
-        submitted: false,
-        error: false,
-        message: ''
+        submitted: true,
+        error: true,
+        message: 'Oops! Something went wrong. Please try again or email me directly at kaxitjayswal185@gmail.com'
       });
-    }, 5000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -214,8 +256,8 @@ const Contact = () => {
               {fieldErrors.message && <div className="error-message">{fieldErrors.message}</div>}
             </div>
             
-            <button type="submit" className="submit-btn">
-              Send Message <FaPaperPlane />
+            <button type="submit" className="submit-btn" disabled={isLoading}>
+              {isLoading ? 'Sending...' : 'Send Message'} <FaPaperPlane />
             </button>
           </form>
         </div>
