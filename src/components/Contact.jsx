@@ -156,7 +156,7 @@ const Contact = () => {
   return (
     <section id="contact">
       <div className="section-header">
-        <h2><span className="section-number">05.</span> Contact</h2>
+        <h2><span className="section-number">06.</span> Contact</h2>
       </div>
       
       <div className="contact-container">
@@ -174,7 +174,7 @@ const Contact = () => {
             <div className="contact-detail-item">
               <FaPhone className="detail-icon" />
               <a href="tel:+917046126912" className="contact-link">
-                <span className="detail-text"><span className="highlight">+91 7046126912</span></span>
+                <span className="detail-text"><span className="highlight">+91 0000000000</span></span>
               </a>
             </div>
             <div className="contact-detail-item">

@@ -21,11 +21,6 @@ const ProjectCard = ({ title, description, image, technologies, link, github }) 
           ))}
         </div>
         <div className="project-links">
-          {github && (
-            <a href={github} className="project-link github-link" target="_blank" rel="noopener noreferrer">
-              <FaGithub /> Code
-            </a>
-          )}
           {link && (
             <a href={link} className="project-link" target="_blank" rel="noopener noreferrer">
               <FaExternalLinkAlt /> Live Demo
