@@ -55,6 +55,16 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: #64ffda;
+  color: #0a192f;
+}
+
+::-moz-selection {
+  background: #64ffda;
+  color: #0a192f;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
